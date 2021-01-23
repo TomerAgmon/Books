@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { authLoading } from './../../../core/auth/store/auth.selectors';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -10,7 +11,7 @@ import { login } from 'src/app/core/auth/store/auth.actions';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WelcomeComponent implements OnInit {
-  loading$;
+  loading$: Observable<boolean>;
 
   constructor(private store: Store) {}
 
@@ -18,7 +19,7 @@ export class WelcomeComponent implements OnInit {
     this.loading$ = this.store.pipe(select(authLoading));
   }
 
-  submit($event) {
+  submit($event): void {
     this.store.dispatch(login($event));
   }
 }

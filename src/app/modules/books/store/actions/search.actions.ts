@@ -1,14 +1,16 @@
 import { createAction, props } from '@ngrx/store';
 import { Book } from 'src/app/core/models/book.model';
+import { BooksQueryResult } from '../../search/models/books-query-result.interface';
+import { BooksQuery } from '../../search/models/books-query.interface';
 
 export const searchBooks = createAction(
   '[Search] Search Books',
-  props<{ query: string; startIndex: number }>()
+  props<BooksQuery>()
 );
 
 export const searchBooksSuccess = createAction(
   '[Search] Search Books Success',
-  props<{ books: Book[]; totalItems: number; query: string }>()
+  props<BooksQueryResult>()
 );
 
 export const searchBooksFailure = createAction(

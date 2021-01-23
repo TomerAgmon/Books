@@ -1,14 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import {
-  catchError,
-  map,
-  concatMap,
-  tap,
-  withLatestFrom,
-  switchMap,
-} from 'rxjs/operators';
-import { EMPTY, of } from 'rxjs';
+import { map, tap, withLatestFrom, switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 import * as WishlistActions from '../actions/wishlist.actions';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -27,9 +20,11 @@ export class WishlistEffects {
             const alreadyInWishlist = wishlist?.find(
               (b) => b.id === action.book.id
             );
-            return alreadyInWishlist
-              ? WishlistActions.addToWishlistFailiure({ book: action.book })
-              : WishlistActions.addToWishlistSuccess({ book: action.book });
+            const wishlistAction = alreadyInWishlist
+              ? WishlistActions.addToWishlistFailiure
+              : WishlistActions.addToWishlistSuccess;
+
+            return wishlistAction({ book: action.book });
           })
         )
       )
@@ -41,7 +36,7 @@ export class WishlistEffects {
       return this.actions$.pipe(
         ofType(WishlistActions.addToWishlistSuccess),
         tap((action) =>
-          this.snackbar.open(action.book.title + ' added to the wishlist')
+          this.snackbar.open(`${action.book.title} added to the wishlist`)
         )
       );
     },
@@ -52,11 +47,9 @@ export class WishlistEffects {
     () => {
       return this.actions$.pipe(
         ofType(WishlistActions.addToWishlistFailiure),
-        tap((action) => {
-          return this.snackbar.open(
-            action.book.title + ' is already in the wishlist'
-          );
-        })
+        tap((action) =>
+          this.snackbar.open(`${action.book.title} is already in the wishlist`)
+        )
       );
     },
     { dispatch: false }
@@ -67,7 +60,7 @@ export class WishlistEffects {
       return this.actions$.pipe(
         ofType(WishlistActions.removeFromWishlist),
         tap((action) =>
-          this.snackbar.open(action.book.title + ' removed from the wishlist')
+          this.snackbar.open(`${action.book.title} rmoved from the wishlist`)
         )
       );
     },

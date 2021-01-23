@@ -15,9 +15,9 @@ export interface State {
 
 export const initialState: State = {
   loading: false,
-  books: null,
+  books: undefined,
   totalItems: 0,
-  lastQuery: null,
+  lastQuery: undefined,
 };
 
 export const reducer = createReducer(
@@ -35,6 +35,6 @@ export const reducer = createReducer(
     books: action.books,
     lastQuery: action.query,
     totalItems:
-      action.query != state.lastQuery ? action.totalItems : state.totalItems,
+      action.query !== state.lastQuery ? action.totalItems : state.totalItems,
   }))
 );

@@ -21,7 +21,6 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.router.events.pipe(takeUntil(this.destroy$)).subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        // hide splash screen
         this.splashScreenService.hide();
       }
     });

@@ -6,11 +6,11 @@ import { Book } from 'src/app/core/models/book.model';
   templateUrl: './wishlist-item.component.html',
   styleUrls: ['./wishlist-item.component.scss'],
 })
-export class WishlistItemComponent implements OnInit {
+export class WishlistItemComponent {
   @Input() book: Book;
   @Output() removeFromWishlist = new EventEmitter();
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  removeClick(): void {
+    this.removeFromWishlist.emit(this.book);
+  }
 }

@@ -4,26 +4,25 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import {
   catchError,
   map,
-  concatMap,
   switchMap,
   debounceTime,
   distinctUntilChanged,
-  pluck,
-  filter,
   tap,
   finalize,
 } from 'rxjs/operators';
-import { EMPTY, of } from 'rxjs';
+import { of } from 'rxjs';
 
 import * as SearchActions from '../actions/search.actions';
 import { Store } from '@ngrx/store';
 
 @Injectable()
 export class SearchEffects {
+  SEARCH_DEBOUNCE = 500;
+
   searchBooks$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(SearchActions.searchBooks),
-      debounceTime(500),
+      debounceTime(this.SEARCH_DEBOUNCE),
       distinctUntilChanged(
         (a, b) => a.query === b.query && a.startIndex === b.startIndex
       ),
@@ -37,7 +36,7 @@ export class SearchEffects {
         if (action.query.length === 0) {
           return of(
             SearchActions.searchBooksSuccess({
-              books: null,
+              books: undefined,
               totalItems: 0,
               query: action.query,
             })

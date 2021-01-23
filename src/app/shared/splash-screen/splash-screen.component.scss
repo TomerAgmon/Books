@@ -1,6 +1,6 @@
 :host {
   .splash-screen {
-    background-color: #f2f3f8;
+    background-color: white;
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -10,18 +10,9 @@
     width: 100%;
     z-index: 1000;
 
-    span {
-      margin-left: calc(100vw - 100%);
-      margin-bottom: 30px;
-    }
-
     ::ng-deep {
       [role="progressbar"] {
         margin-left: calc(100vw - 100%);
-      }
-      .mat-progress-spinner circle,
-      .mat-spinner circle {
-        stroke: #5d78ff;
       }
     }
   }
