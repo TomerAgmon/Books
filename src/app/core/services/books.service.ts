@@ -23,7 +23,7 @@ export class BooksService {
 
     return this.api.get(this.apiUrl, httpParams).pipe(
       map((result) => {
-        const books = result.items.map((i) => Book.parse(i));
+        const books = result.items?.map((i) => Book.parse(i));
         const totalItems = result.totalItems;
 
         return { books, totalItems, query };
