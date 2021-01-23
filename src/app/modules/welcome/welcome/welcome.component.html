@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="row h-20">
+    <div class="col-auto">
+      <app-login
+        [loading$]="loading$"
+        (submitLogin)="submit($event)"
+      ></app-login>
+    </div>
+  </div>
+</div>

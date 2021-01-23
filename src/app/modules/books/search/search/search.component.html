@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <h1>Welcome {{ username$ | async }}</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <app-books-search-input
+        (inputChange)="onSearchInputChanged($event)"
+      ></app-books-search-input>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col">
+      <app-books-table
+        [books$]="books$"
+        [loading$]="loading$"
+        [totalItems$]="totalItems$"
+        (pageChange)="onPageChange($event)"
+        (rowClicked)="onRowClicked($event)"
+      ></app-books-table>
+    </div>
+  </div>
+</div>

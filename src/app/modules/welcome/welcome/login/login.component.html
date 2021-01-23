@@ -1,0 +1,38 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field appearance="standard">
+        <input matInput placeholder="Username" formControlName="username" />
+      </mat-form-field>
+      <mat-error>
+        <span *ngIf="form.get('username').invalid && form.touched"
+          >Username is required</span
+        >
+      </mat-error>
+      <mat-form-field appearance="standard">
+        <input
+          matInput
+          placeholder="Password"
+          formControlName="password"
+          type="password"
+        />
+      </mat-form-field>
+      <mat-error>
+        <span *ngIf="form.get('password').invalid && form.touched"
+          >Password is required</span
+        >
+      </mat-error>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button [disabled]="form.invalid && form.touched">
+        Submit
+        <mat-icon *ngIf="loading$ | async"
+          ><mat-spinner diameter="20"> </mat-spinner
+        ></mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

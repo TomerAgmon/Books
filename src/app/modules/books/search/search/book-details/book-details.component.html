@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>{{ book.title }}</h1>
+<div mat-dialog-content style="overflow: hidden">
+  <div class="row">
+    <div class="col-auto"><img [src]="book.thumbnailUrl" /></div>
+    <div class="col">{{ book.description }}</div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="false">Close</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>
+    Add to wishlist
+  </button>
+</div>

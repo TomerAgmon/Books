@@ -1,0 +1,16 @@
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title class="card__title">{{ book.title }}</mat-card-title>
+  </mat-card-header>
+  <img
+    mat-card-image
+    [src]="book.thumbnailUrl"
+    alt="Book thumbnail"
+    class="card__thumbnail"
+  />
+  <mat-card-actions>
+    <button mat-raised-button (click)="removeFromWishlist.emit(book)">
+      <mat-icon color="danger">delete</mat-icon> Remove book from wishlist
+    </button>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,18 @@
+<div>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>Books app</span>
+      <span class="spacer"></span>
+      <div>
+        <a [routerLink]="['/books/search']" mat-button>
+          <mat-icon>search</mat-icon>
+          Search
+        </a>
+        <a [routerLink]="['/books/wishlist']" mat-button>
+          <mat-icon>star</mat-icon>
+          Wishlist
+        </a>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
